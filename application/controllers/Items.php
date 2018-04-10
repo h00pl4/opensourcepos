@@ -194,7 +194,7 @@ class Items extends Secure_Controller
 			$data['default_tax_2_rate'] = $this->config->item('default_tax_2_rate');
 
 			$item_info->receiving_quantity = 1;
-			$item_info->reorder_level = 1;
+			$item_info->reorder_level = 0;
 			$item_info->item_type = ITEM; // standard
 			$item_info->stock_type = HAS_STOCK;
 			$item_info->tax_category_id = 1;  // Standard
@@ -248,7 +248,7 @@ class Items extends Secure_Controller
 			$location = $this->xss_clean($location);
 
 			$quantity = $this->xss_clean($this->Item_quantity->get_item_quantity($item_id, $location['location_id'])->quantity);
-			$quantity = ($item_id == -1) ? 0 : $quantity;
+			$quantity = ($item_id == -1) ? 1 : $quantity;
 			$location_array[$location['location_id']] = array('location_name' => $location['location_name'], 'quantity' => $quantity);
 			$data['stock_locations'] = $location_array;
 		}
