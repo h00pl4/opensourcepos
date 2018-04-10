@@ -35,21 +35,6 @@
 				<?php $this->load->view("people/form_basic_info"); ?>
 
 				<div class="form-group form-group-sm">
-					<?php echo form_label($this->lang->line('customers_discount'), 'discount_percent', array('class' => 'control-label col-xs-3')); ?>
-					<div class='col-xs-3'>
-						<div class="input-group input-group-sm">
-							<?php echo form_input(array(
-									'name'=>'discount_percent',
-									'id'=>'discount_percent',
-									'class'=>'form-control input-sm',
-									'value'=>$person_info->discount_percent)
-									);?>
-							<span class="input-group-addon input-sm"><b>%</b></span>
-						</div>
-					</div>	
-				</div>
-
-				<div class="form-group form-group-sm">
 					<?php echo form_label($this->lang->line('customers_company_name'), 'company_name', array('class' => 'control-label col-xs-3')); ?>
 					<div class='col-xs-8'>
 						<?php echo form_input(array(
@@ -57,18 +42,6 @@
 								'id'=>'company_name',
 								'class'=>'form-control input-sm',
 								'value'=>$person_info->company_name)
-								);?>
-					</div>
-				</div>
-
-				<div class="form-group form-group-sm">
-					<?php echo form_label($this->lang->line('customers_account_number'), 'account_number', array('class' => 'control-label col-xs-3')); ?>
-					<div class='col-xs-4'>
-						<?php echo form_input(array(
-								'name'=>'account_number',
-								'id'=>'account_number',
-								'class'=>'form-control input-sm',
-								'value'=>$person_info->account_number)
 								);?>
 					</div>
 				</div>
@@ -94,15 +67,6 @@
 						</div>
 					</div>
 				<?php endif; ?>
-
-				<div class="form-group form-group-sm">
-					<?php echo form_label($this->lang->line('customers_taxable'), 'taxable', array('class' => 'control-label col-xs-3')); ?>
-					<div class='col-xs-1'>
-						<?php echo form_checkbox('taxable', '1', $person_info->taxable == '' ? TRUE : (boolean)$person_info->taxable);?>
-					</div>
-				</div>
-			</fieldset>
-		</div>
 
 		<?php
 		if(!empty($stats))
