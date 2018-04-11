@@ -508,9 +508,10 @@ class Item extends CI_Model
 	{
 		$suggestions = array();
 		$non_kit = array(ITEM, ITEM_AMOUNT_ENTRY);
-
-		$this->db->select($this->get_search_suggestion_format('item_id, name'));
+		$this->db->select($this->get_search_suggestion_format('items.item_id, name'));
 		$this->db->from('items');
+		$this->db->join('item_quantities', 'item_quantities.item_id = items.item_id'); //These 2 lines added to not
+		$this->db->where('quantity >', 0);	      //list sold items -rjob
 		$this->db->where('deleted', $filters['is_deleted']);
 		$this->db->where_in('item_type', $non_kit); // standard, exclude kit items since kits will be picked up later
 		$this->db->like('name', $search);
