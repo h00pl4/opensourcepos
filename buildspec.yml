@@ -3,17 +3,6 @@ version: 0.2
 phases:
   install:
     commands:
-      # - add-apt-repository ppa:ondrej/php
-      # - apt-get update
-      # - apt-get install php7.0-zip # Needed for composer
-      - apt list
-      - curl -sL https://deb.nodesource.com/setup_10.x | bash -
-      - apt-get install nodejs -y
-      - npm -v
-      - npm install -g bower
-      - bower -v
-      - npm install -g grunt-cli
-      - grunt -V
       - chmod 755 bin/devinstall.sh
       - chmod 755 bin/gendocs.sh
   pre_build:
@@ -27,5 +16,6 @@ artifacts:
     - database/**/*
 cache:
   paths:
-    - node_modules/**/*
-    - /root/.composer/cache
+    - /root/.composer/cache/**/*
+    - /root/.npm/**/*
+    - /root/.cache/bower/packages/**/*
