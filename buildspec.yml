@@ -16,9 +16,11 @@ phases:
       - bower -v
       - npm install -g grunt-cli
       - grunt -V
+      - chmod 777 bin/devinstall.sh
+      - chmod 777 bin/gendocs.sh
   pre_build:
     commands:
-      - sudo bin/devinstall.sh
+      - bin/devinstall.sh
 artifacts:
   files:
     - public/**/*
