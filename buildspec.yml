@@ -18,7 +18,7 @@ phases:
       - grunt -V
   pre_build:
     commands:
-      - bin/devinstall.sh
+      - sudo bin/devinstall.sh
 artifacts:
   files:
     - public/**/*
