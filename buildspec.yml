@@ -3,6 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - ls
       - sudo apt-get install git composer python-software-properties curl apache2 mysql-server-5.7 libapache2-mod-php7.0 php7.0-intl php7.0-mcrypt php7.0-bcmath php7.0-curl php7.0-gd php7.0-mysql php7.0-mbstring php7.0-zip -y
       - git --version
       - php --version
