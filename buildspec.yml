@@ -6,7 +6,7 @@ phases:
       # - add-apt-repository ppa:ondrej/php
       # - apt-get update
       # - apt-get install php7.0-zip # Needed for composer
-      - apt-get install php7.0-gd -y
+      - apt list
       - curl -sL https://deb.nodesource.com/setup_10.x | bash -
       - apt-get install nodejs -y
       - npm -v
@@ -14,8 +14,8 @@ phases:
       - bower -v
       - npm install -g grunt-cli
       - grunt -V
-      - chmod 777 bin/devinstall.sh
-      - chmod 777 bin/gendocs.sh
+      - chmod 755 bin/devinstall.sh
+      - chmod 755 bin/gendocs.sh
   pre_build:
     commands:
       - bin/devinstall.sh
