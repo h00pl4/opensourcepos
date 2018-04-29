@@ -15,6 +15,7 @@ artifacts:
     - vendor/**/*
     - database/**/*
     - appspec.yml
+    - scripts/**/*
 cache:
   paths:
     - /root/.composer/cache/**/*
