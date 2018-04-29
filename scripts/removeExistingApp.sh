@@ -1,2 +1,2 @@
 cd /app
-rm -r public application vendor database
+rm -rf public application vendor database
