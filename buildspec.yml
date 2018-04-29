@@ -9,6 +9,7 @@ phases:
     commands:
       - bin/devinstall.sh
 artifacts:
+  type: zip
   files:
     - public/**/*
     - application/**/*
