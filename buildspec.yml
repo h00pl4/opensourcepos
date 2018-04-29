@@ -8,13 +8,12 @@ phases:
   pre_build:
     commands:
       - bin/devinstall.sh
+  post_build:
+    commands:
+      - zip -r package.zip public application vendor database
 artifacts:
-  type: zip
   files:
-    - public/**/*
-    - application/**/*
-    - vendor/**/*
-    - database/**/*
+    - package.zip
 cache:
   paths:
     - /root/.composer/cache/**/*
