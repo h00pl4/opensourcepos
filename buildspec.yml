@@ -1,13 +1,13 @@
 version: 0.2
             
 phases:
-  install:
+  build:
     commands:
-      - chmod 755 bin/devinstall.sh
-      - chmod 755 bin/gendocs.sh
-  pre_build:
-    commands:
-      - bin/devinstall.sh
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker run --rm -v $(pwd):/app composer/composer install
+      - docker run --rm -v $(pwd):/app -w /app lucor/php7-cli php bin/install.php translations develop
+      - docker run --rm -it -v $(pwd):/app -w /app digitallyseamless/nodejs-bower-grunt sh -c "npm install && bower install && grunt package"
 artifacts:
   files:
     - public/**/*
