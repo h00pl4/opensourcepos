@@ -3,11 +3,15 @@ version: 0.2
 phases:
   build:
     commands:
+      - ls /
+      - ls /root
+      - ls /root/var
+      - ls /root/var/lib
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker run --rm -v $(pwd):/app composer/composer install
       - docker run --rm -v $(pwd):/app -w /app lucor/php7-cli php bin/install.php translations develop
-      - docker run --rm -it -v $(pwd):/app -w /app digitallyseamless/nodejs-bower-grunt sh -c "npm install && bower install && grunt package"
+      - docker run --rm -i -v $(pwd):/app -w /app digitallyseamless/nodejs-bower-grunt sh -c "npm install && bower install && grunt package"
 artifacts:
   files:
     - public/**/*
