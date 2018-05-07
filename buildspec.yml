@@ -3,10 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - ls /
-      - ls /root
-      - ls /root/var
-      - ls /root/var/lib
+      - ls /var/lib/docker
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker run --rm -v $(pwd):/app composer/composer install
@@ -25,3 +22,4 @@ cache:
     - /root/.composer/cache/**/*
     - /root/.npm/**/*
     - /root/.cache/bower/packages/**/*
+    - /var/lib/docker/**/*.qcow2
