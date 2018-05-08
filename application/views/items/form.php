@@ -54,21 +54,6 @@
 							'checked'=>$item_info->stock_type == HAS_NO_STOCK)
 					); ?> <?php echo 'Other'; ?>
 				</label>
-				<?php
-				if($this->config->item('derive_sale_quantity') == '1') {
-				?>
-					<label class="radio-inline">
-						<?php echo form_radio(array(
-								'name' => 'item_type',
-								'type' => 'radio',
-								'id' => 'item_type',
-								'value' => 2,
-								'checked' => $item_info->item_type == ITEM_AMOUNT_ENTRY)
-						); ?><?php echo $this->lang->line('items_amount_entry'); ?>
-					</label>
-				<?php
-				}
-				?>
 
 			</div>
 		</div>
