@@ -77,6 +77,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<?php
+		endif;
+		?>
+		
+	<?php
+		foreach($stock_locations as $key=>$location_detail)
+		{
+		?>
 
 			<div class="form-group form-group-sm">
 				<?php echo form_label($this->lang->line('items_quantity').' '.$location_detail['location_name'], 'quantity_' . $key, array('class'=>'required control-label col-xs-3')); ?>
