@@ -23,6 +23,31 @@
 </div>
 
 <div class="form-group form-group-sm">	
+	<?php echo form_label($this->lang->line('common_gender'), 'gender', !empty($basic_version) ? array('class'=>'required control-label col-xs-3') : array('class'=>'control-label col-xs-3')); ?>
+	<div class="col-xs-4">
+		<label class="radio-inline">
+			<?php echo form_radio(array(
+					'name'=>'gender',
+					'type'=>'radio',
+					'id'=>'gender',
+					'value'=>1,
+					'checked'=>$person_info->gender === '1')
+					); ?> <?php echo $this->lang->line('common_gender_male'); ?>
+		</label>
+		<label class="radio-inline">
+			<?php echo form_radio(array(
+					'name'=>'gender',
+					'type'=>'radio',
+					'id'=>'gender',
+					'value'=>0,
+					'checked'=>$person_info->gender === '0')
+					); ?> <?php echo $this->lang->line('common_gender_female'); ?>
+		</label>
+
+	</div>
+</div>
+
+<div class="form-group form-group-sm">	
 	<?php echo form_label($this->lang->line('common_email'), 'email', array('class'=>'control-label col-xs-3')); ?>
 	<div class='col-xs-8'>
 		<div class="input-group">
@@ -65,6 +90,18 @@
 </div>
 
 <div class="form-group form-group-sm">	
+	<?php echo form_label($this->lang->line('common_address_2'), 'address_2', array('class'=>'control-label col-xs-3')); ?>
+	<div class='col-xs-8'>
+		<?php echo form_input(array(
+				'name'=>'address_2',
+				'id'=>'address_2',
+				'class'=>'form-control input-sm',
+				'value'=>$person_info->address_2)
+				);?>
+	</div>
+</div>
+
+<div class="form-group form-group-sm">	
 	<?php echo form_label($this->lang->line('common_city'), 'city', array('class'=>'control-label col-xs-3')); ?>
 	<div class='col-xs-8'>
 		<?php echo form_input(array(
@@ -76,13 +113,7 @@
 	</div>
 </div>
 
-<div class="form-group form-group-sm">
-    	<?php /* check if person_info->state is null, then load 'Victoria' else load $person_info */
-        	if ($person_info->state == "") {
-		    $person_info->state = "Victoria";
-        	}
-   	 ?>
-
+<div class="form-group form-group-sm">	
 	<?php echo form_label($this->lang->line('common_state'), 'state', array('class'=>'control-label col-xs-3')); ?>
 	<div class='col-xs-8'>
 		<?php echo form_input(array(
@@ -105,14 +136,8 @@
 				);?>
 	</div>
 </div>
-	
-<div class="form-group form-group-sm">
-    	<?php /* check if person_info->country is null, then load 'Australia' else load $person_info */
-        	if ($person_info->country == "") {
-            	$person_info->country = "Australia";
-        	}
-    	?>
-	
+
+<div class="form-group form-group-sm">	
 	<?php echo form_label($this->lang->line('common_country'), 'country', array('class'=>'control-label col-xs-3')); ?>
 	<div class='col-xs-8'>
 		<?php echo form_input(array(
