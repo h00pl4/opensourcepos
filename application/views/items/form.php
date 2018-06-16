@@ -127,6 +127,11 @@
 			}
 		}
 		?>
+
+
+		<div class="form-group form-group-sm">
+			<?php echo form_label($this->lang->line('items_description'), 'description', array('class'=>'control-label col-xs-3')); ?>
+				<div class='col-xs-8'>		
 		
             	<?php 
 
@@ -147,6 +152,8 @@
                                                  );
                         		}
                 	?>
+				</div>
+		</div>
 		
 	</fieldset>
 <?php echo form_close(); ?>
