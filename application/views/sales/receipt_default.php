@@ -203,19 +203,6 @@
 	@media screen { .noscreen { display: none; align-self: center;} }
 	</style>
 
-	<p class="pwords noscreen" style="position:absolute; bottom:0">
-		<?php
-			if($comp_check == 1){   //if any purchases are computers, print passwords
-			echo '<iframe src="passwords.html"  width="110%" scrolling="no"></iframe>';
-			echo '<br />';
-			echo nl2br($this->config->item('return_policy'));
-
-			} else { //not a computer
-			echo 'Thank you for supporting Computerbank';
-			} 
-		?>
-	</p> 
-
 	<div style="page-break-after: always;"></div>
 	<div class="page2 noscreen" style="align-content:center"> 
 		<?php
