@@ -135,7 +135,7 @@
 		
             	<?php 
 
-			  if($item_info->stock_type == 0) //Check if item is a computer then concatenate a description, if not enter manually
+			  if($item_info->stock_type == 0) //Check if item is a computer then concatenate a description, if not show category
                     		{ //echo 'this is a computer';
                                 	echo form_textarea(array(
 						'name'=>'description',
@@ -143,12 +143,12 @@
 						'class'=>'form-control input-sm',
 						'value'=>$item_info->category.', '.$item_info->custom2.', '.$item_info->custom3.', '.$item_info->custom4.' GHz, '.$item_info->custom5.' GB RAM, '.$item_info->custom6.' GB HDD, '.$item_info->custom8.', '.$item_info->custom7.'" Monitor') 
 						);
-                    		} else { // not a computer so enter Description manually
+                    		} else { // not a computer so enter category for description
                     			echo form_textarea(array(
 						'name'=>'description',
 						'id'=>'description',
 						'class'=>'form-control input-sm',
-						'value'=>$item_info->description)
+						'value'=>$item_info->category)
                                                  );
                         		}
                 	?>
