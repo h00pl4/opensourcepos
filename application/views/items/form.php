@@ -51,6 +51,40 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="form-group form-group-sm">
+			<?php echo form_label($this->lang->line('items_tax_1'), 'tax_percent_1', array('class'=>'control-label col-xs-3')); ?>
+			<div class='col-xs-4'>
+				<?php echo form_input(array(
+						'name'=>'tax_names[]',
+						'id'=>'tax_name_1',
+						'class'=>'form-control input-sm',
+						'value'=>isset($item_tax_info[0]['name']) ? $item_tax_info[0]['name'] : $this->config->item('default_tax_1_name'))
+						);?>
+			</div>
+			<div class="col-xs-4">
+				<div class="input-group input-group-sm">
+					<?php 
+					if($item_info->category == 'Support' || $item_info->category == 'Miscellaneous-new') //Check if GST is applicable
+					{
+						echo form_input(array(
+							'name'=>'tax_percents[]',
+							'id'=>'tax_percent_name_1',
+							'class'=>'form-control input-sm',
+							'value'=>10) //10% GST applicable
+							);
+					} else {	
+						echo form_input(array(
+							'name'=>'tax_percents[]',
+							'id'=>'tax_percent_name_1',
+							'class'=>'form-control input-sm',
+							'value'=>0) //GST not applicable	
+							);
+					?>
+					<span class="input-group-addon input-sm"><b>%</b></span>
+				</div>
+			</div>
+		</div>
 		
 	<?php
 		foreach($stock_locations as $key=>$location_detail)
