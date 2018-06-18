@@ -32,32 +32,6 @@
 			</div>
 		</div>
 
-		<?php if ($item_kits_enabled == '1'): ?>
-		<div class="form-group form-group-sm">
-			<?php echo form_label($this->lang->line('items_stock_type'), 'stock_type', !empty($basic_version) ? array('class'=>'required control-label col-xs-3') : array('class'=>'control-label col-xs-3')); ?>
-			<div class="col-xs-8">
-				<label class="radio-inline">
-					<?php echo form_radio(array(
-							'name'=>'stock_type',
-							'type'=>'radio',
-							'id'=>'stock_type',
-							'value'=>0,
-							'checked'=>$item_info->stock_type == HAS_STOCK)
-					); ?> <?php echo 'Computer'; ?>  <!-- Select if item is a computer rather than equipment  -->
-				</label>
-				<label class="radio-inline">
-					<?php echo form_radio(array(
-							'name'=>'stock_type',
-							'type'=>'radio',
-							'id'=>'stock_type',
-							'value'=>1,
-							'checked'=>$item_info->stock_type == HAS_NO_STOCK)
-					); ?> <?php echo 'Other'; ?>
-				</label>
-
-			</div>
-		</div>
-
 		<div class="form-group form-group-sm">
 			<?php echo form_label($this->lang->line('items_unit_price'), 'unit_price', array('class'=>'required control-label col-xs-3')); ?>
 			<div class='col-xs-4'>
@@ -135,8 +109,8 @@
 		
             	<?php 
 
-			  if($item_info->stock_type == 0) //Check if item is a computer then concatenate a description, if not show category
-                    		{ //echo 'this is a computer';
+			  if($item_info->category == 'Laptop' || $item_info->category == 'Desktop' || $item_info->category == 'Tower' || $item_info->category == 'All-in-One') //Check if item is a computer then concatenate a description, if not show category
+			  { 
                                 	echo form_textarea(array(
 						'name'=>'description',
 						'id'=>'description',
@@ -186,7 +160,7 @@ $(document).ready(function()
 					data: $.extend(request, $extend(csrf_form_base(), {field_no: <?php echo $i; ?>})),
 					success: function(data) {
 						response($.map(data, function(item) {
-							return {
+							return {ock_type == 0) //Check if item is a computer then concatenate a descript
 								value: item.label
 							};
 						}))
