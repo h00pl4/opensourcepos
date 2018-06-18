@@ -160,7 +160,7 @@ $(document).ready(function()
 					data: $.extend(request, $extend(csrf_form_base(), {field_no: <?php echo $i; ?>})),
 					success: function(data) {
 						response($.map(data, function(item) {
-							return {ock_type == 0) //Check if item is a computer then concatenate a descript
+							return {
 								value: item.label
 							};
 						}))
