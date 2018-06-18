@@ -52,10 +52,6 @@
 			</div>
 		</div>
 		
-		<?php
-		endif;
-		?>
-		
 	<?php
 		foreach($stock_locations as $key=>$location_detail)
 		{
