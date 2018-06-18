@@ -80,6 +80,7 @@
 							'class'=>'form-control input-sm',
 							'value'=>0) //GST not applicable	
 							);
+						}
 					?>
 					<span class="input-group-addon input-sm"><b>%</b></span>
 				</div>
