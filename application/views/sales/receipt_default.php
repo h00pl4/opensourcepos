@@ -199,9 +199,19 @@
 		</tr>
 	</table>
 
-	<style>
-	@media screen { .noscreen { display: none; align-self: center;} }
-	</style>
+	<div id="sale_return_policy" style="position:absolute; bottom:0">
+		<?php echo nl2br($this->config->item('return_policy')); ?>
+	</div>
+
+		<?php
+				echo '<br><br><br><br>';	
+			if($comp_check == 1)
+			{//if any purchases are computers, print warranty overleaf etc.
+				echo 'FOR WARRANTY KEEP YOUR RECEIPT. SEE OVERLEAF FOR DETAILS OF WARRANTY, SUPPORT & PASSWORDS.';
+			}else{ //not a computer
+				echo 'THANK YOU FOR SUPPORTING COMPUTERBANK';
+			}
+		?>
 
 	<div style="page-break-after: always;"></div>
 	<div class="page2 noscreen" style="align-content:center"> 
