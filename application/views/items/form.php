@@ -393,7 +393,7 @@ $(document).ready(function()
 		var taxRate = '0.00';
 
 		if (TAXABLE_CATEGORIES.indexOf(category) !== -1) {
-			taxRate = '10.00'; // TODO: Get value of default tax rate
+			taxRate = '10.00'; // TODO: Get value of default tax rate. $default_tax_1_rate seems unreliable.
 		}
 
 		$('#tax_percent_name_1').val(taxRate);
@@ -410,7 +410,7 @@ $(document).ready(function()
 					type: "POST",
 					url: "<?php echo site_url('items/suggest_custom');?>",
 					dataType: "json",
-					data: $.extend(request, $extend(csrf_form_base(), {field_no: <?php echo $i; ?>})),
+					data: $.extend(request, $.extend(csrf_form_base(), {field_no: <?php echo $i; ?>})),
 					success: function(data) {
 						response($.map(data, function(item) {
 							return {
