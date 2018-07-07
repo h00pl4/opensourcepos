@@ -328,14 +328,67 @@
 					<div class="form-group form-group-sm">
 						<?php echo form_label($this->config->item('custom'.$i.'_name'), 'custom'.$i, array('class'=>'control-label col-xs-3')); ?>
 						<div class='col-xs-8'>
-							<?php echo form_input(array(
+							<div class="input-group input-group-sm">
+							<?php 
+							switch($i) {
+								case 1:
+									?>
+									<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-calendar"></span></span>
+									<?php
+									$type = 'date';
+									$step = 1;
+									break;
+								case 4:
+								case 5:
+								case 6:
+								case 7:
+									$type = 'number';
+									$step = 0.1;
+									break;
+								case 10:
+									if (!currency_side()): ?>
+										<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
+									<?php endif;
+									$type = 'number';
+									$step = 1;
+									break;
+								default:
+									$type = 'text';
+									$step = 1;
+							}
+							echo form_input(array(
 									'name'=>'custom'.$i,
 									'id'=>'custom'.$i,
-									'type'=> array(1 => 'date', 2 => 'text', 3 => 'text', 4 => 'number', 5 => 'number', 6 => 'number', 7 => 'number', 8 => 'text', 9 => 'text', 10 => 'number')[$i],
-									'step'=> 0.1,
+									'type'=> $type,
+									'step'=> $step,
 									'class'=>'form-control input-sm',
 									'value'=>$item_arr['custom'.$i])
-									);?>
+									);
+							switch($i) {
+								case 4:
+									?>
+									<span class="input-group-addon input-sm"><b>GHz</b></span>
+									<?php
+									break;
+								case 5:
+								case 6:
+									?>
+									<span class="input-group-addon input-sm"><b>GB</b></span>
+									<?php
+									break;
+								case 7:
+									?>
+									<span class="input-group-addon input-sm"><b>Inches</b></span>
+									<?php
+									break;
+								case 10:
+									if (currency_side()): ?>
+										<span class="input-group-addon input-sm"><b><?php echo $this->config->item('currency_symbol'); ?></b></span>
+									<?php endif;
+									break;
+							}
+								?>
+							</div>
 						</div>
 					</div>
 			<?php
@@ -364,6 +417,7 @@ $(document).ready(function()
 {
 	const TAXABLE_CATEGORIES = ['Support', 'Miscellaneous-new'];
 	const COMPUTER_CATEGORIES = ['Laptop', 'Desktop', 'Tower', 'All-in-One'];
+	const DEFAULT_TAX_RATE = '<?php echo to_tax_decimals($default_tax_1_rate);?>';
 	const hideComputerFields = () => {
 		let category = $('#category').val();
 
@@ -393,12 +447,17 @@ $(document).ready(function()
 		var taxRate = '0.00';
 
 		if (TAXABLE_CATEGORIES.indexOf(category) !== -1) {
-			taxRate = '10.00'; // TODO: Get value of default tax rate. $default_tax_1_rate seems unreliable.
+			taxRate = DEFAULT_TAX_RATE;
 		}
 
 		$('#tax_percent_name_1').val(taxRate);
 
 		hideComputerFields(); // Check whether we should hide the custom fields
+	});
+
+	// Update description
+	$('#computer-fields').change(() => {
+		$('#description').val(`${$('#category').val()}, ${$('#custom2').val()}, ${$('#custom3').val()}, ${$('#custom4').val()} GHz, ${$('#custom5').val()} GB RAM, ${$('#custom6').val()} GB HDD, ${$('#custom8').val()}, ${$('#custom7').val()}" Monitor`);
 	});
 
 	<?php for ($i = 1; $i <= 10; ++$i)

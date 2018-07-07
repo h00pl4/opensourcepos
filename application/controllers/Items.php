@@ -178,8 +178,8 @@ class Items extends Secure_Controller
 	public function view($item_id = -1)
 	{
 		$data['item_tax_info'] = $this->xss_clean($this->Item_taxes->get_info($item_id));
-		$data['default_tax_1_rate'] = '';
-		$data['default_tax_2_rate'] = '';
+		$data['default_tax_1_rate'] = $this->config->item('default_tax_1_rate'); // Passing down the tax rate regardless of whether or not this is a new item. Doesn't seem to break anything.
+		$data['default_tax_2_rate'] = $this->config->item('default_tax_2_rate');
 		$data['item_kits_enabled'] = $this->Employee->has_grant('item_kits', $this->Employee->get_logged_in_employee_info()->person_id);
 
 		$item_info = $this->Item->get_info($item_id);
@@ -190,8 +190,6 @@ class Items extends Secure_Controller
 
 		if($item_id == -1)
 		{
-			$data['default_tax_1_rate'] = $this->config->item('default_tax_1_rate');
-			$data['default_tax_2_rate'] = $this->config->item('default_tax_2_rate');
 
 			$item_info->receiving_quantity = 1;
 			$item_info->reorder_level = 0;
