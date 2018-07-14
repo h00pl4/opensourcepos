@@ -47,7 +47,7 @@
 		</div>
 
 		<?php if ($item_kits_enabled == '1'): ?>
-		<div class="form-group form-group-sm">
+		<div class="form-group form-group-sm hidden">
 			<?php echo form_label($this->lang->line('items_stock_type'), 'stock_type', !empty($basic_version) ? array('class'=>'required control-label col-xs-3') : array('class'=>'control-label col-xs-3')); ?>
 			<div class="col-xs-8">
 				<label class="radio-inline">
@@ -448,9 +448,9 @@ $(document).ready(function()
 
 		if (TAXABLE_CATEGORIES.indexOf(category) !== -1) {
 			taxRate = DEFAULT_TAX_RATE;
-		}
 
 		$('#tax_percent_name_1').val(taxRate);
+		}
 
 		hideComputerFields(); // Check whether we should hide the custom fields
 	});
