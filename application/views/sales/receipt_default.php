@@ -102,9 +102,10 @@
 			}
 			?>
 		<?php
-			if($item['stock_type'] == 0)    //Added to check for any computer purchases -rjob
+			$comp_check=0;
+			if(in_array($item['item_category'], ['Laptop', 'Desktop', 'Tower', 'All-in-One']))    //Added to check for any computer purchases -rjob
 			{
-			$comp_check=1;
+				$comp_check=1;
 			}
 		}
 		?>
