@@ -33,6 +33,7 @@
 
 	<div id="receipt_general_info">
 		<?php
+		$comp_check=0;
 		if(isset($customer))
 		{
 		?>
@@ -102,7 +103,6 @@
 			}
 			?>
 		<?php
-			$comp_check=0;
 			if(in_array($item['item_category'], ['Laptop', 'Desktop', 'Tower', 'All-in-One']))    //Added to check for any computer purchases -rjob
 			{
 				$comp_check=1;
