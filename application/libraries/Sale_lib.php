@@ -825,6 +825,7 @@ class Sale_lib
 					'discount' => $discount,
 					'in_stock' => $this->CI->Item_quantity->get_item_quantity($item_id, $item_location)->quantity,
 					'price' => $price,
+					'item_category' => $item_info->category,
 					'cost_price' => $cost_price,
 					'total' => $total,
 					'discounted_total' => $discounted_total,
