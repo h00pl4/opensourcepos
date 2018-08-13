@@ -47,7 +47,7 @@
 		</div>
 
 		<?php if ($item_kits_enabled == '1'): ?>
-		<div class="form-group form-group-sm">
+		<div class="form-group form-group-sm hidden">
 			<?php echo form_label($this->lang->line('items_stock_type'), 'stock_type', !empty($basic_version) ? array('class'=>'required control-label col-xs-3') : array('class'=>'control-label col-xs-3')); ?>
 			<div class="col-xs-8">
 				<label class="radio-inline">
@@ -215,6 +215,7 @@
 		<?php } ?>
 
 		<?php
+		define("DEFAULT_STOCK_LEVEL", 1);
 		foreach($stock_locations as $key=>$location_detail)
 		{
 		?>
@@ -225,7 +226,7 @@
 							'name'=>'quantity_' . $key,
 							'id'=>'quantity_' . $key,
 							'class'=>'required quantity form-control',
-							'value'=>isset($item_info->item_id) ? to_quantity_decimals($location_detail['quantity']) : to_quantity_decimals(0))
+							'value'=>isset($item_info->item_id) ? to_quantity_decimals($location_detail['quantity']) : to_quantity_decimals(DEFAULT_STOCK_LEVEL))
 							);?>
 				</div>
 			</div>
@@ -416,18 +417,25 @@
 $(document).ready(function()
 {
 	const TAXABLE_CATEGORIES = ['Support', 'Miscellaneous-new'];
+	const NON_STOCKED_CATEGORIES = ['Support'];
 	const COMPUTER_CATEGORIES = ['Laptop', 'Desktop', 'Tower', 'All-in-One'];
 	const DEFAULT_TAX_RATE = '<?php echo to_tax_decimals($default_tax_1_rate);?>';
-	const hideComputerFields = () => {
+	const updateFieldsBasedOnCategory = () => {
 		let category = $('#category').val();
+		let isComputer = COMPUTER_CATEGORIES.indexOf(category) !== -1;
+		let isStocked = NON_STOCKED_CATEGORIES.indexOf(category) === -1;
 
-		if (COMPUTER_CATEGORIES.indexOf(category) === -1) {
-			$('#computer-fields').addClass('hidden');
-		} else {
+		if (isComputer) {
 			$('#computer-fields').removeClass('hidden');
-		}
+		} else {
+			$('#computer-fields').addClass('hidden');
+		}		
+
+		// Querying radio buttons by id will only return the first element http://www.mkyong.com/jquery/how-to-select-a-radio-button-with-jquery/
+		$('input:radio[name=stock_type]')[0].checked = isStocked;
+		$('input:radio[name=stock_type]')[1].checked = !isStocked;
 	};
-	hideComputerFields(); // Run as soon as document is ready. This will ensure that fields are hidden if category is not a computer
+	updateFieldsBasedOnCategory(); // Run as soon as document is ready
 
 	$("#new").click(function() {
 		stay_open = true;
@@ -452,7 +460,7 @@ $(document).ready(function()
 
 		$('#tax_percent_name_1').val(taxRate);
 
-		hideComputerFields(); // Check whether we should hide the custom fields
+		updateFieldsBasedOnCategory(); // Check whether we should hide the custom fields
 	});
 
 	// Update description
