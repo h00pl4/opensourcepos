@@ -465,7 +465,7 @@ $(document).ready(function()
 
 	// Update description
 	$('#computer-fields').change(() => {
-		$('#description').val(`${$('#category').val()}, ${$('#custom2').val()}, ${$('#custom3').val()}, ${$('#custom4').val()} GHz, ${$('#custom5').val()} GB RAM, ${$('#custom6').val()} GB HDD, ${$('#custom8').val()}, ${$('#custom7').val()}" Monitor`);
+		$('#description').val(`${$('#category').val()}, ${$('#custom2').val()}, ${$('#custom3').val()}, ${$('#custom4').val()} GHz, ${$('#custom5').val()} GB RAM, ${$('#custom6').val()} GB HDD, ${$('#custom8').val()}, ${$('#custom7').val()}" Screen`);
 	});
 
 	<?php for ($i = 1; $i <= 10; ++$i)
